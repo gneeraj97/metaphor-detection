@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metaphor Detector</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        p#display {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Is it a Metaphor?</h1>
+    <form method="POST" autocomplete="off" action="/pred">
+        <div>
+            <label for="metaphorSelection">Select word:</label>
+            <select id="metaphorSelection" name="metaphor">
+                <option value="road" {% if  selected_metaphor  == "road" %}selected{% endif %}>Road</option>
+                <option value="candle" {% if  selected_metaphor  == "candle" %}selected{% endif %}>Candle</option>
+                <option value="light" {% if selected_metaphor == "light" %}selected{% endif %}>Light</option>
+                <option value="spice" {% if  selected_metaphor  == "spice" %}selected{% endif %}>Spice</option>
+                <option value="ride" {% if  selected_metaphor  == "ride" %}selected{% endif %}>Ride</option>
+                <option value="train" {% if  selected_metaphor  == "train" %}selected{% endif %}>Train</option>
+                <option value="boat" {% if  selected_metaphor  == "boat" %}selected{% endif %}>Boat</option>
+            </select>
+        </div>
+        <textarea rows="12" cols="60" name="paragraph" placeholder="Enter your paragraph here"
+            value="{{ text }}">{{ text }}</textarea>
+
+        <div>
+            <button type="submit">Check</button>
+        </div>
+    </form>
+    <div>
+        <p id="display">{{ pred }}</p>
+    </div>
+</body>
+
+</html>
